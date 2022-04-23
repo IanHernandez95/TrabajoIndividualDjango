@@ -1,0 +1,31 @@
+{% extends 'templatebase.html' %}
+
+{% block content %}
+<div class='formulario'>
+    <form action="" method="POST">
+
+        <h2>Registro de Alumnos Nuevos</h2>
+
+        {% csrf_token %}
+        {{form.as_p}}
+
+        <button type="submit">Registrar</button>
+
+    </form>
+
+    <br>
+
+    {% if messages %}
+
+        {% for menssage in messages %}
+
+            <div>{{menssage}}</div>
+
+        {% endfor %}
+
+    {% endif %}
+</div>
+
+
+
+{% endblock content %}

@@ -6,15 +6,12 @@
 
 #cabeza{
     display: flex;
-    background-color: aqua;
+    background-color: rgb(77, 77, 77);
     width: auto;
     padding: 30px;
     justify-content: center;
 }
 
-#textocabeza{
-    color: black;
-}
 
 #navbarra{
     display: flex ;
@@ -34,7 +31,7 @@
 }
 
 .main{
-    background-color: aqua;
+    background-color: rgb(104, 104, 104);
     width: auto;
     height: 600px;
     display: flex;
@@ -58,6 +55,12 @@
 }
 
 .contenedortabla{
+    display: flex;
+    justify-content: center;
+
+}
+
+.formulario{
     display: flex;
     justify-content: center;
 }
