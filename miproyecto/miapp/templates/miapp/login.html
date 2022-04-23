@@ -1,0 +1,14 @@
+{% extends 'templatebase.html' %}
+
+{% block content %}
+<br>
+<div class='formulario'>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br>
+        <button class="btn btn-outline-success" type="submit">Login</button>
+    </form>
+</div>
+
+{% endblock %}

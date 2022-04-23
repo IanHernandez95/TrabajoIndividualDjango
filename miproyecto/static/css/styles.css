@@ -64,3 +64,8 @@
     display: flex;
     justify-content: center;
 }
+
+#btn-navbar{
+    padding: 0;
+    color: rgb(0, 116, 29);
+}

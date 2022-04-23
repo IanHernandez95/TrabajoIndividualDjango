@@ -2,19 +2,15 @@
 
 {% block content %}
 
-<div class='formulario'>
-    <form action="" method="POST">
 
-        <h2>Registro de Alumnos Nuevos</h2>
+<div class='formulario'>
+    <form action="" method="post">
 
         {% csrf_token %}
         {{form.as_p}}
-
-        <button type="submit">Registrar</button>
+        <button class="btn btn-outline-success" type="submit">Registrar</button>
 
     </form>
-
-    <br>
 
     {% if messages %}
 
@@ -25,8 +21,7 @@
         {% endfor %}
 
     {% endif %}
+
 </div>
 
-
-
-{% endblock content %}
+{% endblock %}
