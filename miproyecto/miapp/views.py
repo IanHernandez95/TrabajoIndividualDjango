@@ -1,11 +1,17 @@
+from multiprocessing import context
 from django.shortcuts import render
+
+from .models import Alumno
 
 # Create your views here.
 def index(request):
     return render(request, 'miapp/index.html')
 
-def pagina1(request):
-    return render(request, 'miapp/pagina1.html')
+def registro(request):
+
+    alumnos = Alumno.objects.all
+
+    return render(request, 'miapp/registro.html', {'alumnos':alumnos})
 
 def pagina2(request):
     return render(request, 'miapp/pagina2.html')
