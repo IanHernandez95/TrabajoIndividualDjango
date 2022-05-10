@@ -1,0 +1,17 @@
+{% extends 'templatebase.html' %}
+
+{% block content %}
+
+
+<div class='formulario-com'>
+    <form action="" method="post">
+
+        {% csrf_token %}
+        {{form.as_p}}
+        <button class="btn btn-outline-success" type="submit">Enviar Comentarios</button>
+
+    </form>
+
+</div>
+
+{% endblock %}

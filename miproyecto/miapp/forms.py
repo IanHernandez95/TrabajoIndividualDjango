@@ -1,9 +1,11 @@
+from dataclasses import field
+from pyexpat import model
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 
-from .models import Alumno
+from .models import Alumno, Comentarios
 
 class AlumnoForm(forms.ModelForm):
     class Meta:
@@ -20,3 +22,9 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ["username", "email", "password1", "password2"]
         help_texts = {k:"" for k in fields}
+
+
+class ComentariosForm(forms.ModelForm):
+    class Meta:
+        model = Comentarios
+        fields = ['nombre', 'email', 'comentario']

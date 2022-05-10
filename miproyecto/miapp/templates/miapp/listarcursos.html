@@ -1,0 +1,34 @@
+{% extends 'templatebase.html' %}
+
+{% block content %}
+
+<h1>Listado de Alumnos Registrados</h1>
+<br>
+<div class='contenedortabla'>
+    <table class="table" class='tabla-cursos'>
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Profesor</th>
+                <th scope="col">Alumnos</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for curso in cursos %}
+        <tr>
+            <th scope="col">{{curso.id}}</th>
+            <td>{{curso.nombre}}</td>
+            <td>{{curso.profesor}}</td>
+            <td>{% for alumno in curso.alumnos.all %}
+                    <p>{{alumno.nombre}} {{alumno.apellido}}</p>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+            
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

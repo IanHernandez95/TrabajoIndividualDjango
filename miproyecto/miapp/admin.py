@@ -15,3 +15,6 @@ class ProfesorAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.Profesor, ProfesorAdmin)
+
+admin.site.register(models.Cursos)
+admin.site.register(models.Comentarios)
