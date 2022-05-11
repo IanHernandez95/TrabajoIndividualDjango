@@ -94,3 +94,14 @@ tr:nth-child(even){
     display: flex;
     justify-content: center;
 }
+
+.btn-registrar{
+    float: right;
+}
+
+.div-btn{
+    padding-top: 10px;
+    display: flex;
+    justify-content: right;
+    flex-direction: row-reverse;
+}

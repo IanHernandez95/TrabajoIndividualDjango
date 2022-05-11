@@ -20,7 +20,8 @@ class UserRegisterForm(UserCreationForm):
     password2 = forms.CharField(label="Confirmar contraseña", widget=forms.PasswordInput)
     class Meta:
         model = User
-        fields = ["username", "email", "password1", "password2"]
+        fields = ["username","first_name","last_name", "email", "password1", "password2"]
+        labels = {"username": "Nombre de Usuario","first_name":"Nombre","last_name":"Apellido", "email": "Correo Electronico"}
         help_texts = {k:"" for k in fields}
 
 

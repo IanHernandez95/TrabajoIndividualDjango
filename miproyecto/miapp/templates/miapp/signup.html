@@ -7,8 +7,14 @@
     <form action="" method="post">
 
         {% csrf_token %}
-        {{form.as_p}}
-        <button class="btn btn-outline-success" type="submit">Registrar</button>
+
+        <table class='form-table'>
+            {{form.as_table}}
+        </table>
+        
+        <div class='div-btn'>
+            <button class="btn btn-outline-success" type="submit" class='btn-registrar'>Registrar</button>
+        </div
 
     </form>
 
