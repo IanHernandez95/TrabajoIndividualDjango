@@ -12,19 +12,17 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Email</th>
                 <th scope="col">Comentarios</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
+                <th scope="col">Opciones</th>
             </tr>
         </thead>
         <tbody>
-        {% for com in comentarios %}
-        <tr>
-            <th scope="col">{{com.id}}</th>
+        {% for com in object_list %}
+        <tr class='tr-lista'>
+            <th scope="row">{{com.id}}</th>
             <td>{{com.nombre}}</td>
             <td>{{com.email}}</td>
             <td>{{com.comentario}}</td>
-            <td><a class="btn btn-primary" href="/editarcomentario/{{com.id}}" role="button">Editar</a></td>
-            <td><a class="btn btn-danger" href="/eliminarcomentario/{{com.id}}" role="button">Eliminar</a></td>
+            <td><a class="btn btn-primary" href="/editarcomentario/{{com.id}}" role="button">Editar</a>   <a class="btn btn-danger" href="/eliminarcomentario/{{com.id}}" role="button">Eliminar</a></td>
         </tr>
         {% endfor %}
         </tbody>

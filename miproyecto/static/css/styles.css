@@ -31,7 +31,7 @@
 }
 
 .main{
-    background-color: rgb(104, 104, 104);
+    background-color: rgb(255, 0, 0);
     width: auto;
     height: 600px;
     display: flex;
@@ -40,12 +40,12 @@
 
 .item-main{
     padding: 1em;
-    border-color: black;
-    border-width: 1px;
+    border: #246355 solid 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    background-color: #8d8400;
 }
 
 .imgcurso{
@@ -86,7 +86,7 @@ thead{
     color: white;
 }
 
-tr:nth-child(even){
+.tr-lista:nth-child(even){
     background-color: #ddd;
 }
 
@@ -104,4 +104,28 @@ tr:nth-child(even){
     display: flex;
     justify-content: right;
     flex-direction: row-reverse;
+}
+
+.login{
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+}
+
+.formulario-login{
+    width: 400px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 5px rgba(107, 107, 107,0.5);
+    display: flex;
+    justify-content: center;
+}
+
+
+.form-group{
+    padding: 8px;
+}
+
+.btn-login{
+    color: white;
 }

@@ -1,0 +1,11 @@
+{% extends 'templatebase.html' %}
+
+{% block content %}
+
+<form method="post">{% csrf_token %}
+    <p>¿Desea eliminar el Comentario "{{ object.nombre }}"?</p>
+        {{ form }}
+    <button class= 'btn btn-danger'>Confirmar</button>
+</form>
+
+{% endblock content %}

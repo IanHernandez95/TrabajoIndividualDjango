@@ -1,88 +1,61 @@
-import re
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, TemplateView, ListView, UpdateView, DeleteView
+from django.contrib.auth.models import User
 
 from .models import Alumno, Comentarios, Cursos
 from .forms import AlumnoForm, UserRegisterForm, ComentariosForm
 
-# Create your views here.
-def index(request):
-    return render(request, 'miapp/index.html')
-
-def registro(request):
-
-    alumnos = Alumno.objects.all
-
-    return render(request, 'miapp/registro.html', {'alumnos':alumnos})
-
-def ingresoalumnos(request):
-    form = AlumnoForm()
-    if request.method == 'POST':
-        form = AlumnoForm(request.POST)
-        if form.is_valid():
-            alumno = Alumno()
-            alumno.nombre = form.data['nombre']
-            alumno.apellido = form.data['apellido']
-            alumno.edad = form.data['edad']
-            alumno.email = form.data['email']
-            alumno.save()
-            messages.success(request, f'El alumno {alumno.nombre} {alumno.apellido} a sido Registrado Correctamente')
-
-    return render(request, 'miapp/ingresoal.html', {'form':form})
-
-def singup(request):
-    if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data['username']
-            messages.success(request, f'El Usuario {username} a sido Registrado Correctamente')
-    else:
-        form = UserRegisterForm()
-
-    context = {'form':form}
-
-    return render(request, 'miapp/signup.html', context)
-
-@login_required
-def ingresado(request):
-    return render(request, 'miapp/ingresado.html')
-
-def listarcursos(request):
-    
-    cursos = Cursos.objects.all()
-
-    return render(request, 'miapp/listarcursos.html', {'cursos':cursos})
+# Create your views here.+
+class Index(TemplateView):
+    template_name = 'miapp/index.html'
 
 
-def crearcomentario(request):
-    form = ComentariosForm()
-    if request.method == 'POST':
-        form = ComentariosForm(data=request.POST)
-        comentario = form.save(commit=False)
-        comentario.save()
-        return redirect('listarcomentarios')
+class CursoRevit(TemplateView):
+    template_name = 'miapp/cursorevit.html'
 
-    else:
-        return render(request, 'miapp/crearcomentario.html', {'form':form})
+class CursoAutocad(TemplateView):
+    template_name = 'miapp/cursoautocad.html'
 
-def listarcomentarios(request):
-    comentarios = Comentarios.objects.all()
+class ListarAlumnos(ListView):
+    model = Alumno
+    paginate_by = 10
+    template_name = 'miapp/listadoalumnos.html'
 
-    return render(request, 'miapp/listarcomentarios.html', {'comentarios': comentarios})
+class RegistrarAlumnos(CreateView):
+    model = Alumno
+    form_class = AlumnoForm
+    template_name = 'miapp/registraralumnos.html'
+    success_url = reverse_lazy('listaralumnos')
 
-def editarcomentarios(request, id):
-    comentario = Comentarios.objects.get(pk=id)
-    form = ComentariosForm(instance=comentario)
-    if request.method == 'POST':
-        form = ComentariosForm(data=request.POST, instance=comentario)
-        form.save()
-        return redirect('listarcomentarios')
-    else:
-        return render(request, 'miapp/editarcomentario.html', {'form':form})
+class Signup(CreateView):
+    model = User
+    form_class = UserRegisterForm
+    template_name = 'miapp/signup.html'
+    success_url = reverse_lazy('index')
 
-def borrarcomentarios(request, id):
-    comentario = Comentarios.objects.get(pk=id)
-    comentario.delete()
-    return redirect('listarcomentarios')
+class Listarcursos(ListView):
+    model = Cursos
+    template_name = 'miapp/listarcursos.html'
+
+class CrearComentario(CreateView):
+    model = Comentarios
+    form_class = ComentariosForm
+    template_name = 'miapp/crearcomentario.html'
+    success_url = reverse_lazy('listarcomentarios')
+
+class ListarComentarios(ListView):
+    model = Comentarios
+    template_name = 'miapp/listarcomentarios.html'
+
+class EditarComentarios(UpdateView):
+    model = Comentarios
+    form_class = ComentariosForm
+    template_name = 'miapp/crearcomentario.html'
+    success_url = reverse_lazy('listarcomentarios')
+
+class EliminarComentarios(DeleteView):
+    model = Comentarios
+    success_url = reverse_lazy('listarcomentarios')
