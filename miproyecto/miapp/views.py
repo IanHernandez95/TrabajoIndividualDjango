@@ -1,10 +1,12 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView, ListView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 
+from .mixins import StaffUsuarioMixins
 from .models import Alumno, Comentarios, Cursos
 from .forms import AlumnoForm, UserRegisterForm, ComentariosForm
 
@@ -24,7 +26,7 @@ class ListarAlumnos(ListView):
     paginate_by = 10
     template_name = 'miapp/listadoalumnos.html'
 
-class RegistrarAlumnos(CreateView):
+class RegistrarAlumnos(LoginRequiredMixin, StaffUsuarioMixins, CreateView):
     model = Alumno
     form_class = AlumnoForm
     template_name = 'miapp/registraralumnos.html'
